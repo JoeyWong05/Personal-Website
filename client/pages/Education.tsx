@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Github, Linkedin, Mail, Calendar, Code } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Education() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [animationStage, setAnimationStage] = useState(0);
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     // Start animations after component mounts
@@ -16,39 +18,65 @@ export default function Education() {
     const timer3 = setTimeout(() => setAnimationStage(2), 600);
     const timer4 = setTimeout(() => setAnimationStage(3), 900);
 
+    // Set up intersection observer for scroll animations
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animateId]));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px 0px -50px 0px'
+      }
+    );
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
       clearTimeout(timer4);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
     };
   }, []);
+
+  useEffect(() => {
+    // Observe all elements with scroll animation
+    if (observerRef.current) {
+      const elementsToObserve = document.querySelectorAll('[data-animate-id]');
+      elementsToObserve.forEach(el => observerRef.current?.observe(el));
+    }
+  }, [animationStage]);
   const coursework = [
     {
       semester: "Fall 2023",
       courses: [
-        { code: "MATH 1A", name: "Calculus 1" },
-        { code: "UGBA 10", name: "Principles of Business" },
-        { code: "CS 10", name: "The Beauty and Joy of Computing" },
+        { code: "MATH 1A", name: "Calculus 1", grade: "A+" },
+        { code: "UGBA 10", name: "Principles of Business", grade: "A" },
+        { code: "COMPSCI 10", name: "The Beauty and Joy of Computing" },
         { code: "RHETOR 152AC", name: "Race and Order in the New Republic" }
       ]
     },
     {
       semester: "Spring 2024",
       courses: [
-        { code: "MATH 1B", name: "Calculus 2" },
+        { code: "MATH 1B", name: "Calculus 2", grade: "A" },
         { code: "COMPSCI 61A", name: "Interpretation of Computer Programs", grade: "A+" },
         { code: "STAT 21", name: "Probability and Statistics for Business" },
-        { code: "MATH 53", name: "Multivariable Calculus" }
+        { code: "MATH 53", name: "Multivariable Calculus", grade: "A+" }
       ]
     },
     {
       semester: "Fall 2024",
       courses: [
         { code: "COMPSCI 61B", name: "Data Structure" },
-        { code: "DATA C8", name: "Foundations of Data Science" },
-        { code: "MATH 54", name: "Linear Algebra and Differential Equations" },
-        { code: "ECON 140", name: "Econometrics" }
+        { code: "DATA 8", name: "Foundations of Data Science", grade: "A" },
+        { code: "MATH 54", name: "Linear Algebra and Differential Equations", grade: "A" },
+        { code: "ECON 140", name: "Econometrics", grade: "A" }
       ]
     },
     {
@@ -62,10 +90,10 @@ export default function Education() {
     {
       semester: "Summer 2025",
       courses: [
-        { code: "ENVECON C176", name: "Climate Change Economics" },
-        { code: "ECON 157", name: "Health Economics" },
-        { code: "DIGHUM 150C", name: "Digital Humanities and Text and Language Analysis" },
-        { code: "DIGHUM 100", name: "Theory and Method in the Digital Humanities" }
+        { code: "ENVECON C176", name: "Climate Change Economics", grade: "A+" },
+        { code: "ECON 157", name: "Health Economics", grade: "A+" },
+        { code: "DIGHUM 150C", name: "Digital Humanities and Text and Language Analysis", grade: "A+" },
+        { code: "DIGHUM 100", name: "Theory and Method in the Digital Humanities", grade: "A+" }
       ]
     },
     {
@@ -149,9 +177,9 @@ export default function Education() {
                 className="text-gray-400 hover:text-white p-2"
                 asChild
               >
-                <a href="mailto:jwxng@berkeley.edu">
+                <Link to="/contact">
                   <Mail className="w-4 h-4" />
-                </a>
+                </Link>
               </Button>
               <Button
                 variant="ghost"
@@ -194,7 +222,7 @@ export default function Education() {
                 <span className="text-xs sm:text-sm md:text-base text-gray-400">| Minor in Digital Humanities</span>
               </p>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-2">College of Computing, Data Science, and Society</p>
-              <p className="text-xs sm:text-sm text-gray-400 italic">EGT: Spring 2027 | GPA: 3.81 / 4.0</p>
+              <p className="text-xs sm:text-sm text-gray-400 italic">EGT: Spring 2027 | GPA: 3.83 / 4.0</p>
             </div>
           </div>
         </section>
@@ -211,29 +239,22 @@ export default function Education() {
           <h2 className="text-lg sm:text-2xl font-bold mb-2">Coursework</h2>
           <p className="text-gray-400 mb-4 sm:mb-6 text-xs sm:text-sm">All at UC Berkeley unless indicated otherwise.</p>
 
-          <div className="space-y-4 sm:space-y-6">
+          <div className={`space-y-4 sm:space-y-6 transition-opacity duration-1000 ${
+            animationStage >= 3 ? 'opacity-100' : 'opacity-0'
+          }`}>
             {coursework.slice().reverse().map((semester, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-800 ${
-                  animationStage >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-                }`}
-                style={{ transitionDelay: `${900 + index * 150}ms` }}
-              >
+              <div key={index}>
                 <h3 className="text-sm sm:text-lg font-bold text-blue-400 mb-1 sm:mb-2">{semester.semester}</h3>
                 <div className="space-y-0.5 sm:space-y-1">
                   {semester.courses.map((course, courseIndex) => (
                     <div
                       key={courseIndex}
-                      className={`flex items-start gap-1 transition-all duration-600 ${
-                        animationStage >= 3 ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
-                      }`}
-                      style={{ transitionDelay: `${1000 + index * 150 + courseIndex * 50}ms` }}
+                      className="flex items-start gap-1"
                     >
-                      <span className="text-white text-xs sm:text-base">{course.code}:</span>
+                      <span className="text-white text-xs sm:text-base font-medium">{course.code}:</span>
                       <span className="text-white text-xs sm:text-base">{course.name}</span>
                       {course.grade && (
-                        <span className="text-gray-400 ml-2 italic text-xs">({course.grade})</span>
+                        <span className="ml-2 italic text-xs font-semibold text-gray-400 opacity-70">({course.grade})</span>
                       )}
                     </div>
                   ))}

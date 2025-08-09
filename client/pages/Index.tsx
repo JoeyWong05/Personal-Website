@@ -169,9 +169,9 @@ export default function Index() {
                 className="text-gray-400 hover:text-white p-2"
                 asChild
               >
-                <a href="mailto:jwxng@berkeley.edu">
+                <Link to="/contact">
                   <Mail className="w-4 h-4" />
-                </a>
+                </Link>
               </Button>
               <Button
                 variant="ghost"
@@ -208,7 +208,14 @@ export default function Index() {
               </Link>
               {" "}Computer Science & Economics (and minoring in Digital Humanities),{" "}
               <span className="text-blue-400">researching</span> ML applications in economics,{" "}
-              <span className="text-blue-400">building</span> full-stack applications.
+              <Link
+                to="/projects"
+                className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer"
+              >
+                <span className="relative z-10">building</span>
+                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
+              </Link>
+              {" "}full-stack applications.
             </p>
             <p>
               Not so currently, I am... learning about financial investment and studying for the GRE.
