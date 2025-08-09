@@ -53,7 +53,7 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <h1 className="text-sm sm:text-lg font-semibold">
+                <h1 className="text-xs sm:text-lg font-semibold">
                   <Link
                     to="/"
                     className="relative inline-block text-white hover:text-blue-400 transition-colors duration-200 group cursor-pointer"
@@ -143,8 +143,8 @@ export default function Contact() {
                     />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-2xl font-bold text-white mb-1">Joey Wong</h2>
-                    <p className="text-gray-300 leading-relaxed">
+                    <h2 className="text-base sm:text-2xl font-bold text-white mb-1">Joey Wong</h2>
+                    <p className="text-xs sm:text-base text-gray-300 leading-relaxed">
                       Hi! I'm a student at UC Berkeley studying Computer Science and Economics with a minor in Digital Humanities.
                       I'm interested in the intersection of technology and business, particularly in areas like fintech, blockchain innovation, and predictive analytics.
                       I'm originally from Vietnam, and outside of school, I'm a big Spider-Man fan. Always excited to connect with like-minded individuals and explore new opportunities in tech and academia.
@@ -159,13 +159,13 @@ export default function Contact() {
               animationStage >= 2 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             }`}>
               <CardHeader className="pb-1">
-                <CardTitle className="text-white text-xl">Send me a message</CardTitle>
+                <CardTitle className="text-white text-base sm:text-xl">Send me a message</CardTitle>
               </CardHeader>
               <CardContent className="p-3">
                 <form onSubmit={handleSubmit} className="space-y-2">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                         Name
                       </label>
                       <input
@@ -174,12 +174,12 @@ export default function Contact() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-xs sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Your name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                      <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                         Email
                       </label>
                       <input
@@ -188,13 +188,13 @@ export default function Contact() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-xs sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1">
                       Message
                     </label>
                     <textarea
@@ -203,13 +203,13 @@ export default function Contact() {
                       onChange={(e) => setMessage(e.target.value)}
                       required
                       rows={6}
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-md text-xs sm:text-base text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
                       placeholder="Tell me about yourself, your project, or what you'd like to discuss..."
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-center space-x-2 transition-all duration-200 text-sm border border-gray-700 shadow-lg hover:shadow-xl"
+                    className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-center space-x-2 transition-all duration-200 text-xs sm:text-sm border border-gray-700 shadow-lg hover:shadow-xl"
                   >
                     <Send className="w-4 h-4" />
                     <span>Send Message</span>
@@ -225,7 +225,7 @@ export default function Contact() {
           }`}>
             <Card className="bg-black border-gray-700">
               <CardHeader className="pb-1">
-                <CardTitle className="text-white text-lg">Get in touch</CardTitle>
+                <CardTitle className="text-white text-base sm:text-lg">Get in touch</CardTitle>
               </CardHeader>
               <CardContent className="p-3 space-y-2">
                 
@@ -235,10 +235,10 @@ export default function Contact() {
                     <Mail className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium">Email</h3>
+                    <h3 className="text-white font-medium text-xs sm:text-base">Email</h3>
                     <a
                       href="mailto:jwxng@berkeley.edu"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm"
                     >
                       jwxng@berkeley.edu
                     </a>
@@ -251,12 +251,12 @@ export default function Contact() {
                     <Linkedin className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium">LinkedIn</h3>
+                    <h3 className="text-white font-medium text-xs sm:text-base">LinkedIn</h3>
                     <a
                       href="https://www.linkedin.com/in/joey-wong-7a572526a"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm"
                     >
                       /in/joey-wong-7a572526a
                     </a>
@@ -269,12 +269,12 @@ export default function Contact() {
                     <Instagram className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium">Instagram</h3>
+                    <h3 className="text-white font-medium text-xs sm:text-base">Instagram</h3>
                     <a
                       href="https://instagram.com/_jwxng"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm"
                     >
                       @_jwxng
                     </a>
@@ -287,12 +287,12 @@ export default function Contact() {
                     <Calendar className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium">Schedule a call</h3>
+                    <h3 className="text-white font-medium text-xs sm:text-base">Schedule a call</h3>
                     <a
                       href="https://calendly.com/jwxng"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm"
                     >
                       calendly.com/jwxng
                     </a>
@@ -305,12 +305,12 @@ export default function Contact() {
                     <Github className="w-5 h-5 text-gray-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-medium">GitHub</h3>
+                    <h3 className="text-white font-medium text-xs sm:text-base">GitHub</h3>
                     <a
                       href="https://github.com/JoeyWong05"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-blue-400 transition-colors text-sm"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs sm:text-sm"
                     >
                       github.com/JoeyWong05
                     </a>
@@ -324,7 +324,7 @@ export default function Contact() {
               animationStage >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
               <CardContent className="p-3">
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-xs sm:text-sm">
                   I typically respond within 24 hours. For urgent matters, feel free to reach out via LinkedIn or schedule a call directly.
                 </p>
               </CardContent>
@@ -335,7 +335,7 @@ export default function Contact() {
               animationStage >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}>
               <CardContent className="p-3 h-full flex flex-col">
-                <h3 className="text-white font-medium mb-3 text-sm">Things I'm into</h3>
+                <h3 className="text-white font-medium mb-3 text-xs sm:text-sm">Things I'm into</h3>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {["Spongebob", "BTS", "NewJeans", "Basketball", "Gym", "Mr. Beast", "ROBLOX", "Marvel", "Sleeping", "Vietnam", "Chipotle", "Chess"].map((interest, index) => (
                     <Badge
@@ -348,7 +348,7 @@ export default function Contact() {
                   ))}
                 </div>
 
-                <h3 className="text-white font-medium mb-3 text-sm">Languages I speak</h3>
+                <h3 className="text-white font-medium mb-3 text-xs sm:text-sm">Languages I speak</h3>
                 <div className="flex flex-wrap gap-2 flex-1 content-start">
                   {["Vietnamese", "English", "Spanish"].map((language, index) => (
                     <Badge

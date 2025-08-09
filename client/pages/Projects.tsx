@@ -4,11 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Github, Linkedin, Mail, Calendar, Code, ExternalLink, Play, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
+import { LikesResponse, UpdateLikeRequest, UpdateLikeResponse } from "@shared/api";
 
 export default function Projects() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [animationStage, setAnimationStage] = useState(0);
-  const [heartCounts, setHeartCounts] = useState<{[key: number]: number}>({1: 247, 2: 156});
+  const [heartCounts, setHeartCounts] = useState<{[key: number]: number}>({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     // Start animations after component mounts
@@ -17,6 +19,9 @@ export default function Projects() {
     const timer3 = setTimeout(() => setAnimationStage(2), 600);
     const timer4 = setTimeout(() => setAnimationStage(3), 900);
 
+    // Fetch initial like counts
+    fetchLikeCounts();
+
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -24,6 +29,40 @@ export default function Projects() {
       clearTimeout(timer4);
     };
   }, []);
+
+  const fetchLikeCounts = async () => {
+    try {
+      const response = await fetch('/api/likes');
+      const data: LikesResponse = await response.json();
+      setHeartCounts(data.likeCounts);
+    } catch (error) {
+      console.error('Failed to fetch like counts:', error);
+      // Fallback to default values
+      setHeartCounts({1: 247, 2: 156});
+    }
+  };
+
+  const handleLike = async (projectId: number) => {
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ projectId } as UpdateLikeRequest),
+      });
+
+      const data: UpdateLikeResponse = await response.json();
+      setHeartCounts(data.likeCounts);
+    } catch (error) {
+      console.error('Failed to update like count:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const projects = [
     {
@@ -71,7 +110,7 @@ export default function Projects() {
                 />
               </div>
               <div>
-                <h1 className="text-sm sm:text-lg font-semibold">
+                <h1 className="text-xs sm:text-lg font-semibold">
                   <Link
                     to="/"
                     className="relative inline-block text-white hover:text-blue-400 transition-colors duration-200 group cursor-pointer"
@@ -144,10 +183,10 @@ export default function Projects() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16">
         {/* Projects Header */}
         <section className="mb-12 sm:mb-16">
-          <h2 className={`text-xl sm:text-3xl md:text-4xl font-bold mb-4 transition-all duration-1000 ${
+          <h2 className={`text-base sm:text-3xl md:text-4xl font-bold mb-4 transition-all duration-1000 ${
             animationStage >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>Projects</h2>
-          <p className={`text-gray-400 text-sm sm:text-lg mb-8 transition-all duration-1000 delay-200 ${
+          <p className={`text-gray-400 text-xs sm:text-lg mb-8 transition-all duration-1000 delay-200 ${
             animationStage >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
           }`}>
             A collection of projects and full-stack applications I've built. :)
@@ -176,20 +215,18 @@ export default function Projects() {
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-white">{project.title}</h3>
                     <button
-                      onClick={() => setHeartCounts(prev => ({
-                        ...prev,
-                        [project.id]: (prev[project.id] || 0) + 1
-                      }))}
-                      className="flex items-center space-x-1 text-gray-400 hover:text-red-400 transition-colors duration-200 bg-transparent border-none cursor-pointer p-1 rounded"
+                      onClick={() => handleLike(project.id)}
+                      disabled={loading}
+                      className="flex items-center space-x-1 text-gray-400 hover:text-red-400 transition-colors duration-200 bg-transparent border-none cursor-pointer p-1 rounded disabled:opacity-50"
                     >
                       <Heart className="w-4 h-4" />
-                      <span className="text-sm">{heartCounts[project.id] || 0}</span>
+                      <span className="text-xs sm:text-sm">{heartCounts[project.id] || 0}</span>
                     </button>
                   </div>
                   
-                  <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  <p className="text-gray-300 text-xs sm:text-sm mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   
@@ -207,7 +244,7 @@ export default function Projects() {
                   
                   <div className="flex space-x-3">
                     <Button
-                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 py-2 flex items-center justify-center space-x-2 transition-all duration-200 text-xs border border-gray-700 shadow-lg hover:shadow-xl"
+                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-3 sm:px-4 py-2 flex items-center justify-center space-x-2 transition-all duration-200 text-xs border border-gray-700 shadow-lg hover:shadow-xl"
                       asChild
                     >
                       <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
@@ -216,7 +253,7 @@ export default function Projects() {
                       </a>
                     </Button>
                     <Button
-                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 py-2 flex items-center justify-center space-x-2 transition-all duration-200 text-xs border border-gray-700 shadow-lg hover:shadow-xl"
+                      className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-3 sm:px-4 py-2 flex items-center justify-center space-x-2 transition-all duration-200 text-xs border border-gray-700 shadow-lg hover:shadow-xl"
                       asChild
                     >
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -235,12 +272,12 @@ export default function Projects() {
         <section className={`transition-all duration-1000 delay-700 ${
           animationStage >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <h3 className="text-xl sm:text-2xl font-bold mb-6">Technical Skills</h3>
+          <h3 className="text-base sm:text-2xl font-bold mb-6">Technical Skills</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="bg-black border-gray-700">
               <CardHeader className="pb-3">
-                <CardTitle className="text-white text-lg">Languages</CardTitle>
+                <CardTitle className="text-white text-sm sm:text-lg">Languages</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
                 <div className="flex flex-wrap gap-2">
@@ -259,7 +296,7 @@ export default function Projects() {
 
             <Card className="bg-black border-gray-700">
               <CardHeader className="pb-3">
-                <CardTitle className="text-white text-lg">Frameworks</CardTitle>
+                <CardTitle className="text-white text-sm sm:text-lg">Frameworks</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
                 <div className="flex flex-wrap gap-2">
@@ -278,7 +315,7 @@ export default function Projects() {
 
             <Card className="bg-black border-gray-700">
               <CardHeader className="pb-3">
-                <CardTitle className="text-white text-lg">Libraries</CardTitle>
+                <CardTitle className="text-white text-sm sm:text-lg">Libraries</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
                 <div className="flex flex-wrap gap-2">
@@ -297,7 +334,7 @@ export default function Projects() {
 
             <Card className="bg-black border-gray-700">
               <CardHeader className="pb-3">
-                <CardTitle className="text-white text-lg">Tools & Technologies</CardTitle>
+                <CardTitle className="text-white text-sm sm:text-lg">Tools & Technologies</CardTitle>
               </CardHeader>
               <CardContent className="p-4">
                 <div className="flex flex-wrap gap-2">

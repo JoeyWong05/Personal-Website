@@ -10,3 +10,20 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * Types for likes API
+ */
+export interface LikesResponse {
+  likeCounts: Record<number, number>;
+}
+
+export interface UpdateLikeRequest {
+  projectId: number;
+}
+
+export interface UpdateLikeResponse {
+  projectId: number;
+  newCount: number;
+  likeCounts: Record<number, number>;
+}

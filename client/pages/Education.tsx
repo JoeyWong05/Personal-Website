@@ -249,13 +249,15 @@ export default function Education() {
                   {semester.courses.map((course, courseIndex) => (
                     <div
                       key={courseIndex}
-                      className="flex items-start gap-1"
+                      className="flex flex-col sm:flex-row sm:items-start gap-0 sm:gap-1"
                     >
-                      <span className="text-white text-xs sm:text-base font-medium">{course.code}:</span>
-                      <span className="text-white text-xs sm:text-base">{course.name}</span>
-                      {course.grade && (
-                        <span className="ml-2 italic text-xs font-semibold text-gray-400 opacity-70">({course.grade})</span>
-                      )}
+                      <div className="flex items-start gap-1 sm:contents">
+                        <span className="text-white text-xs sm:text-base font-medium flex-shrink-0">{course.code}:</span>
+                        <span className="text-white text-xs sm:text-base flex-1">{course.name}</span>
+                        {course.grade && (
+                          <span className="ml-2 sm:ml-2 italic text-xs font-semibold text-gray-400 opacity-70 flex-shrink-0">({course.grade})</span>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>

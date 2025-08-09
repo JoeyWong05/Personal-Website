@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { getLikes, updateLikes } from "./routes/likes";
 
 export function createServer() {
   const app = express();
@@ -18,6 +19,10 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // Likes API routes
+  app.get("/api/likes", getLikes);
+  app.post("/api/likes", updateLikes);
 
   return app;
 }
