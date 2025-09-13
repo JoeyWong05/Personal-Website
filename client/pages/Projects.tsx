@@ -71,7 +71,7 @@ export default function Projects() {
       description: "blah blah blah",
       tech: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL"],
       image: "https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F6da294e986c441fcb7a74baf8533ab08?format=webp&width=800",
-      demoUrl: "#",
+      demoUrl: "https://tryproply.ai/",
       githubUrl: "#"
     },
     {
@@ -80,7 +80,7 @@ export default function Projects() {
       description: "blah blah blah",
       tech: ["TypeScript", "Next.js", "spaCy", "D3.js", "MongoDB"],
       image: "https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F1f691c1beb2b4e0c8aef0a6e74071fee?format=webp&width=800",
-      demoUrl: "#",
+      demoUrl: "https://circuitspeeddating.com/",
       githubUrl: "#"
     }
   ];

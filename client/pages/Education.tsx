@@ -23,7 +23,15 @@ export default function Education() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animateId]));
+            const target = entry.target as HTMLElement;
+            const id = target.dataset?.animateId;
+            if (id) {
+              setVisibleElements((prev) => {
+                const next = new Set(prev as Set<string>);
+                next.add(id);
+                return next;
+              });
+            }
           }
         });
       },
@@ -100,10 +108,11 @@ export default function Education() {
       semester: "Fall 2025",
       courses: [
         { code: "ECON 101B", name: "Math Intensive Macroeconomics" },
-        { code: "ECON 162", name: "The Chinese Economy" },
+        { code: "COMPSCI 194", name: "Agentic AI" },
         { code: "INDENG 172", name: "Risk Analysis for Engineers" },
         { code: "UGBA 104", name: "Business Analytics" },
-        { code: "COMPSCI 61C", name: "Computer Architecture" }
+        { code: "COMPSCI 61C", name: "Computer Architecture" },
+        { code: "UGIS 192B", name: "Independent Research" }
       ]
     }
   ];

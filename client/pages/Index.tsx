@@ -207,7 +207,13 @@ export default function Index() {
                 <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
               </Link>
               {" "}Computer Science & Economics (and minoring in Digital Humanities),{" "}
-              <span className="text-blue-400">researching</span> ML applications in economics,{" "}
+              <Link
+                to="/research"
+                className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer"
+              >
+                <span className="relative z-10">researching</span>
+                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
+              </Link> ML applications in economics,{" "}
               <Link
                 to="/projects"
                 className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer"
@@ -269,7 +275,6 @@ export default function Index() {
                   fontSize={12}
                   blockSize={11}
                   blockMargin={3}
-                  onError={() => setGithubError(true)}
                 />
               ) : (
                 <div className="flex items-center justify-center p-8 border border-gray-800 rounded-lg bg-gray-900/50">
