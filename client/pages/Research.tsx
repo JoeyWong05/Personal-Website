@@ -14,31 +14,25 @@ export default function Research() {
 
   const publications = [
     {
-      title: "Estimating Policy Effects with Machine Learning",
-      venue: "Working Paper",
-      year: 2024,
-      link: "#"
-    },
-    {
-      title: "Learning Heterogeneous Treatment Effects in Macro Models",
-      venue: "Under Review",
+      title: "Preliminary Evaluations of LLM Models",
+      venue: "Drive",
       year: 2025,
-      link: "#"
+      link: "https://drive.google.com/drive/folders/1EzPiI7H5cQzNPV9nbpVPHRNdFua2qAq8?usp=drive_link"
     }
   ];
 
   const experience = [
     {
       role: "Undergraduate Researcher",
-      group: "Economics Lab, UC Berkeley",
-      period: "Summer 2024 - Present",
-      details: "Applied ML methods to forecast regional economic indicators and evaluated model interpretability."
+      group: "University of California, Berkeley — LLM Researcher @ DIAL",
+      period: "June 2025 - Present",
+      details: ""
     },
     {
-      role: "Research Assistant",
-      group: "Digital Humanities Lab",
-      period: "Spring 2023 - Fall 2023",
-      details: "Worked on text analysis pipelines and topic modeling for historical corpora."
+      role: "Data Analyst",
+      group: "Economic & Workforce Development Department of Los Angeles",
+      period: "April 2024 - Aug 2024",
+      details: ""
     }
   ];
 
@@ -128,13 +122,12 @@ export default function Research() {
         <div className={`transition-all duration-1000 ${animationStage >= 2 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <h2 className={`text-base sm:text-3xl md:text-4xl font-bold mb-4 transition-all duration-1000 ${
             animationStage >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}>Research</h2>
+          }`}>Experience</h2>
           <p className={`text-gray-400 text-xs sm:text-lg mb-8 transition-all duration-1000 delay-200 ${
             animationStage >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-          }`}>Research and professional experience — a collection of my projects, and applied work</p>
+          }`}>Research and professional experience — a collection of my projects, and applied work.</p>
 
-          <section className={`mb-8`}> 
-            <h3 className="text-sm sm:text-lg font-semibold text-white mb-2">Experience</h3>
+          <section className={`mb-8`}>
             <div className="space-y-3">
               {experience.map((exp, i) => (
                 <div key={i} className="bg-card p-4 rounded-md border border-gray-800">

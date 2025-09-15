@@ -204,7 +204,7 @@ export default function Index() {
                 className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer"
               >
                 <span className="relative z-10">studying</span>
-                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
+                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
               </Link>
               {" "}Computer Science & Economics (and minoring in Digital Humanities),{" "}
               <Link
@@ -224,7 +224,15 @@ export default function Index() {
               {" "}full-stack applications.
             </p>
             <p>
-              Not so currently, I am... learning about financial investment and studying for the GRE.
+              Not so currently, I am...{" "}
+              <a href="https://leetcode.com/u/jwong05/" target="_blank" rel="noopener noreferrer" className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer">
+                <span className="relative z-10">Leetcoding</span>
+                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
+              </a>{" "}and looking for a{" "}
+              <a href="https://docs.google.com/document/d/1LDDY9zuC1rOwWn-eUMXgXJbLHONlbTkyb98X5FXiwJY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer">
+                <span className="relative z-10">j*b</span>
+                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
+              </a>
             </p>
           </div>
 
