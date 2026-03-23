@@ -67,7 +67,7 @@ export default function Index() {
           <div className="relative">
             <div className="w-20 h-20 rounded-full overflow-hidden animate-pulse">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F2fa1f02715294b97ba609e6e63506c47?format=webp&width=800"
+                src="/baby_joey.jpg"
                 alt="Joey Wong"
                 className="w-full h-full object-cover"
               />
@@ -83,7 +83,7 @@ export default function Index() {
               Joey Wong
             </h1>
             <p className="text-gray-400">
-              Computer Science + Economics
+              Software Engineer
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export default function Index() {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F2fa1f02715294b97ba609e6e63506c47?format=webp&width=800"
+                  src="/baby_joey.jpg"
                   alt="Joey Wong"
                   className="w-full h-full object-cover"
                 />
@@ -127,7 +127,7 @@ export default function Index() {
                     <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
                   </Link>
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Computer Science + Economics</p>
+                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Software Engineer</p>
               </div>
             </div>
 
@@ -206,7 +206,7 @@ export default function Index() {
                 <span className="relative z-10">studying</span>
                 <span className="absolute inset-0 bg-blue-400/10 rounded px-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></span>
               </Link>
-              {" "}Computer Science & Economics (and minoring in Digital Humanities),{" "}
+              {" "}Computer Science, Data Science, & Economics (and minoring in Digital Humanities),{" "}
               <Link
                 to="/research"
                 className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer"
@@ -228,33 +228,29 @@ export default function Index() {
               <a href="https://leetcode.com/u/jwong05/" target="_blank" rel="noopener noreferrer" className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer">
                 <span className="relative z-10">Leetcoding</span>
                 <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
-              </a>{" "}and looking for a{" "}
-              <a href="https://docs.google.com/document/d/1LDDY9zuC1rOwWn-eUMXgXJbLHONlbTkyb98X5FXiwJY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="relative inline-block text-blue-400 hover:text-blue-300 transition-colors duration-200 group cursor-pointer">
-                <span className="relative z-10">j*b</span>
-                <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
-              </a>
+              </a>{" "}and touring Asia :)
             </p>
           </div>
 
           {/* Documents */}
-          <div className={`flex flex-col sm:flex-row gap-3 mb-12 sm:mb-16 transition-all duration-800 delay-500 ${
+          <div className={`flex flex-row gap-2 sm:gap-3 mb-12 sm:mb-16 transition-all duration-800 delay-500 ${
             animationStage >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}>
             <Button
-              className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-center space-x-2 transition-all duration-200 text-sm border border-gray-700 shadow-lg hover:shadow-xl"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-1 rounded-full border border-gray-700 bg-gray-900 px-2 py-1 text-[10px] leading-tight text-white shadow-lg transition-all duration-200 hover:bg-gray-800 hover:shadow-xl sm:h-10 sm:flex-initial sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm sm:leading-normal"
               asChild
             >
               <a href="https://docs.google.com/document/d/1_A_lbQgX3O3_x2a_6ItnpYJjKiHdu0GX4H6iQ4x1ABU/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
-                <Download className="w-4 h-4" />
+                <Download className="size-3 shrink-0 sm:size-4" />
                 <span>Resume</span>
               </a>
             </Button>
             <Button
-              className="bg-gray-900 hover:bg-gray-800 text-white rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-center space-x-2 transition-all duration-200 text-sm border border-gray-700 shadow-lg hover:shadow-xl"
+              className="flex h-8 min-w-0 flex-1 items-center justify-center gap-1 rounded-full border border-gray-700 bg-gray-900 px-2 py-1 text-[10px] leading-tight text-white shadow-lg transition-all duration-200 hover:bg-gray-800 hover:shadow-xl sm:h-10 sm:flex-initial sm:gap-2 sm:px-6 sm:py-2.5 sm:text-sm sm:leading-normal"
               asChild
             >
               <a href="https://calendly.com/jwxng" target="_blank" rel="noopener noreferrer">
-                <Calendar className="w-4 h-4" />
+                <Calendar className="size-3 shrink-0 sm:size-4" />
                 <span>Book Meeting</span>
               </a>
             </Button>

@@ -107,12 +107,31 @@ export default function Education() {
     {
       semester: "Fall 2025",
       courses: [
-        { code: "ECON 101B", name: "Math Intensive Macroeconomics" },
-        { code: "COMPSCI 194", name: "Agentic AI" },
+        { code: "ECON 101B", name: "Math Intensive Macroeconomics", grade: "A" },
+        { code: "COMPSCI 194", name: "Agentic AI", grade: "A" },
         { code: "INDENG 172", name: "Risk Analysis for Engineers" },
-        { code: "UGBA 104", name: "Business Analytics" },
-        { code: "COMPSCI 61C", name: "Computer Architecture" },
+        { code: "UGBA 104", name: "Business Analytics", grade: "A" },
+        { code: "COMPSCI 61C", name: "Computer Architecture", grade: "A" },
         { code: "UGIS 192B", name: "Independent Research" }
+      ]
+    },
+    {
+      semester: "Spring 2026",
+      semesterDetail: "(University of Hong Kong Student Exchange)",
+      courses: [
+        { code: "COMP 3234", name: "Computer and Communication Networks" },
+        { code: "COMP 3278", name: "Database Management Systems" },
+        { code: "IIMT 3627", name: "Venture and Entrepreneurship Management" }
+      ]
+    },
+    {
+      semester: "Summer 2026",
+      courses: [
+        { code: "CYPLAN 101", name: "Urban Data Analytics" },
+        { code: "DIGHUM 101", name: "Python Programming for Digital Humanities" },
+        { code: "DIGHUM 150A", name: "Digital Humanities and Archival Design" },
+        { code: "DIGHUM 150B", name: "Digital Humanities and Visual and Spatial Analysis" },
+        { code: "EDUC 140A", name: "Educational Perspectives on Literacy and Learning" }
       ]
     }
   ];
@@ -129,7 +148,7 @@ export default function Education() {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F2fa1f02715294b97ba609e6e63506c47?format=webp&width=800"
+                  src="/baby_joey.jpg"
                   alt="Joey Wong"
                   className="w-full h-full object-cover"
                 />
@@ -144,7 +163,7 @@ export default function Education() {
                     <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
                   </Link>
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Computer Science + Economics</p>
+                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Software Engineer</p>
               </div>
             </div>
 
@@ -222,16 +241,16 @@ export default function Education() {
               />
             </div>
 
-            <div className={`flex-1 transition-all duration-1000 delay-300 ${
+            <div className={`min-w-0 flex-1 transition-all duration-1000 delay-300 ${
               animationStage >= 1 ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
             }`}>
               <h1 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1">University of California, Berkeley</h1>
-              <p className="text-xs sm:text-base md:text-lg lg:text-xl text-gray-300 mb-1">
-                B.A. in Computer Science + Economics{" "}
-                <span className="text-xs sm:text-sm md:text-base text-gray-400">| Minor in Digital Humanities</span>
+              <p className="mb-1 max-w-full overflow-x-auto text-[10px] leading-snug text-gray-300 [-ms-overflow-style:none] [scrollbar-width:none] sm:text-[11px] sm:whitespace-nowrap md:text-xs lg:text-sm xl:text-base [&::-webkit-scrollbar]:hidden">
+                B.A. in Computer Science + Data Science + Economics{" "}
+                <span className="whitespace-nowrap text-gray-400">| Minor in Digital Humanities</span>
               </p>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-2">College of Computing, Data Science, and Society</p>
-              <p className="text-xs sm:text-sm text-gray-400 italic">EGT: Spring 2027 | GPA: 3.83 / 4.0</p>
+              <p className="text-xs sm:text-sm text-gray-400 italic">Class of 2027 | GPA: 3.83 / 4.0</p>
             </div>
           </div>
         </section>
@@ -253,7 +272,14 @@ export default function Education() {
           }`}>
             {coursework.slice().reverse().map((semester, index) => (
               <div key={index}>
-                <h3 className="text-sm sm:text-lg font-bold text-blue-400 mb-1 sm:mb-2">{semester.semester}</h3>
+                <h3 className="text-sm sm:text-lg font-bold text-blue-400 mb-1 sm:mb-2">
+                  {semester.semester}
+                  {"semesterDetail" in semester && semester.semesterDetail ? (
+                    <span className="ml-1.5 text-[11px] sm:text-sm font-semibold text-blue-400">
+                      {semester.semesterDetail}
+                    </span>
+                  ) : null}
+                </h3>
                 <div className="space-y-0.5 sm:space-y-1">
                   {semester.courses.map((course, courseIndex) => (
                     <div

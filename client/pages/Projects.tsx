@@ -104,7 +104,7 @@ export default function Projects() {
             <div className="flex items-center space-x-2 sm:space-x-4">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden">
                 <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F7e177c37fa6e47b3b9bfc0025bfe2ce3%2F2fa1f02715294b97ba609e6e63506c47?format=webp&width=800"
+                  src="/baby_joey.jpg"
                   alt="Joey Wong"
                   className="w-full h-full object-cover"
                 />
@@ -119,7 +119,7 @@ export default function Projects() {
                     <span className="absolute inset-0 bg-blue-400/10 rounded px-1 transform scale-0 group-hover:scale-100 transition-transform duration-200 origin-center"></span>
                   </Link>
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Computer Science + Economics</p>
+                <p className="text-xs sm:text-sm text-gray-400 hidden sm:block">Software Engineer</p>
               </div>
             </div>
 
